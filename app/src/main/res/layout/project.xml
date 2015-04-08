@@ -33,7 +33,8 @@
     android:divider="@android:color/darker_gray"
     android:dividerHeight="2px"
     android:headerDividersEnabled="true"
-    android:footerDividersEnabled="false">
+    android:footerDividersEnabled="false"
+    android:layout_marginLeft="35dp">
 
     </ListView>
 
@@ -66,7 +67,9 @@
     android:layout_height="wrap_content"
     android:divider="@android:color/darker_gray"
     android:dividerHeight="2px"
-    android:headerDividersEnabled="true">
+    android:headerDividersEnabled="true"
+    android:footerDividersEnabled="false"
+    android:layout_marginLeft="35dp">
 
     </ListView>
 </LinearLayout>
