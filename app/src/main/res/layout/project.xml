@@ -1,11 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <!-- Title of common project-->
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="@string/common_project"
+     android:textColor="@android:color/darker_gray"
+     android:textSize="15sp"
+     android:gravity="left"
+     android:layout_marginLeft="20dp"
+     android:paddingTop="20dp"/>
+
+    <!--separating line -->
+ <ImageView
+     android:layout_width="match_parent"
+     android:layout_height="3px"
+     android:background="@android:color/darker_gray"
+     android:layout_marginLeft="20dp"
+     android:layout_marginTop="5dp"/>
 
 
+
+    <!--List of the common project list -->
+<ListView
+    android:id="@+id/common_project"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@android:color/darker_gray"
+    android:dividerHeight="2px"
+    android:headerDividersEnabled="true"
+    android:footerDividersEnabled="false">
+
+    </ListView>
+
+
+    <!-- Title of participated project-->
     <TextView
-        android:text="prohect"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/participated_project"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:paddingTop="20dp"/>
 
+    <!--separating line -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+
+
+    <!--List of the participated project list -->
+<ListView
+    android:id="@+id/participated_project"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@android:color/darker_gray"
+    android:dividerHeight="2px"
+    android:headerDividersEnabled="true">
+
+    </ListView>
 </LinearLayout>

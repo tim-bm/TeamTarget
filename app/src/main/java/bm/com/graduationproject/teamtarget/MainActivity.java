@@ -1,10 +1,14 @@
 package bm.com.graduationproject.teamtarget;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import bm.com.graduationproject.teamtarget.listener.TabListener;
 
 
 public class MainActivity extends Activity {
@@ -13,6 +17,29 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar=getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        Tab tab=actionBar.newTab()
+                .setText(R.string.tab1)
+                .setTabListener(new TabListener<WorktableFragment>(this,"worktable",WorktableFragment.class));
+
+        actionBar.addTab(tab);
+
+        tab=actionBar.newTab()
+                .setText(R.string.tab2)
+                .setTabListener(new TabListener<ProjectFragment>(this,"project",ProjectFragment.class));
+
+        actionBar.addTab(tab);
+
+
+        tab=actionBar.newTab()
+                .setText(R.string.tab3)
+                .setTabListener(new TabListener<MessageFragment>(this,"message",MessageFragment.class));
+
+        actionBar.addTab(tab);
     }
 
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 /**
  * Created by bm on 2015/4/6.
  */
-public class WorktableActivity extends Fragment {
+public class WorktableFragment extends android.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

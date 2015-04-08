@@ -6,12 +6,28 @@
     <style name="TeamTargetCustomActionBarTheme"
         parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/TeamTargetActionBar</item>
+        <item name="android:actionBarTabStyle">@style/TeamTargetActionBarTabs</item>
+        <item name="android:actionBarTabTextStyle">@style/TeamTargetActionBarTabsText</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="TeamTargetActionBar"
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_g1</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid</item>
+    </style>
+
+    <!-- ActionBar  tabs styles -->
+    <style name="TeamTargetActionBarTabs"
+        parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/actionbar_tab_indicator</item>
+    </style>
+
+    <!-- ActionBar  tabs text styles -->
+    <style name="TeamTargetActionBarTabsText"
+        parent="@android:style/Widget.ActionBar.TabText">
+        <item name="android:textSize">17sp</item>
+
     </style>
 </resources>
 
