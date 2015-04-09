@@ -8,6 +8,8 @@
         <item name="android:actionBarStyle">@style/TeamTargetActionBar</item>
         <item name="android:actionBarTabStyle">@style/TeamTargetActionBarTabs</item>
         <item name="android:actionBarTabTextStyle">@style/TeamTargetActionBarTabsText</item>
+        <item name="android:popupMenuStyle">@style/TeamTargetMenuItemBackground</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TeamTargetMenuItemTextColor</item>
     </style>
 
     <!-- ActionBar styles -->
@@ -27,6 +29,21 @@
     <style name="TeamTargetActionBarTabsText"
         parent="@android:style/Widget.ActionBar.TabText">
         <item name="android:textSize">17sp</item>
+
+    </style>
+
+    <!--popupMenu background-->
+    <style name="TeamTargetMenuItemBackground" 
+        parent="@android:style/Widget.Holo.Light.PopupMenu">
+
+        <item name="android:popupBackground">@drawable/ab_solid_g1</item>
+    </style>
+
+    <!--popupMenu text color-->
+
+    <style name="TeamTargetMenuItemTextColor"
+        parent="@android:style/TextAppearance.Holo.Widget.PopupMenu.Large">
+        <item name="android:textColor">@android:color/white</item>
 
     </style>
 </resources>

@@ -4,9 +4,12 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 
 import bm.com.graduationproject.teamtarget.listener.TabListener;
 
@@ -58,6 +61,16 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
+        switch(id){
+
+            case(R.id.action_new):
+
+           displayPopupWindow(id);
+
+            default:
+        }
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -65,4 +78,19 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void displayPopupWindow(int selectedItem){
+
+        View menuItemView =findViewById(selectedItem);
+
+        PopupMenu popupMenu=new PopupMenu(this,menuItemView);
+
+        popupMenu.getMenuInflater()
+                .inflate(R.menu.main_activity_actions_new_item, popupMenu.getMenu());
+
+
+        popupMenu.show();
+    }
+
+
 }

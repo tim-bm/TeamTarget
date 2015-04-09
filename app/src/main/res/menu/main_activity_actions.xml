@@ -9,7 +9,21 @@
     <item android:id="@+id/action_new"
         android:icon="@drawable/ic_action_new"
         android:title="@string/action_new"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="ifRoom">
+
+        <!--<menu>-->
+            <!--<item android:id="@+id/new_project"-->
+             <!--android:title="@string/new_project"-->
+             <!--android:titleCondensed="@string/new_project"/>-->
+            <!--<item android:id="@+id/new_task"-->
+                <!--android:title="@string/new_task"-->
+                <!--android:titleCondensed="@string/new_task"/>-->
+            <!--<item android:id="@+id/new_schedule"-->
+                <!--android:title="@string/new_schedule"-->
+                <!--android:titleCondensed="@string/new_schedule"/>-->
+        <!--</menu>-->
+
+        </item>
 
 
     <!--overflow -->
@@ -19,7 +33,7 @@
         android:showAsAction="ifRoom"/>
 
     <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:showAsAction="never" />
+    <!--<item android:id="@+id/action_settings"-->
+        <!--android:title="@string/action_settings"-->
+        <!--android:showAsAction="never" />-->
 </menu>
