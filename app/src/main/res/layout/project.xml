@@ -13,7 +13,7 @@
      android:textSize="15sp"
      android:gravity="left"
      android:layout_marginLeft="20dp"
-     android:paddingTop="20dp"/>
+     android:layout_marginTop="20dp"/>
 
     <!--separating line -->
  <ImageView
@@ -48,7 +48,7 @@
         android:textSize="15sp"
         android:gravity="left"
         android:layout_marginLeft="20dp"
-        android:paddingTop="20dp"/>
+        android:layout_marginTop="20dp"/>
 
     <!--separating line -->
     <ImageView

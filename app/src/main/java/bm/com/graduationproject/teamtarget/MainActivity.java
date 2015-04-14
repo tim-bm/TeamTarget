@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import bm.com.graduationproject.teamtarget.listener.TabListener;
 
 
@@ -87,6 +90,28 @@ public class MainActivity extends Activity {
 
         popupMenu.getMenuInflater()
                 .inflate(R.menu.main_activity_actions_new_item, popupMenu.getMenu());
+
+
+        // use reflect to show popupMenu item
+
+        try {
+            Field[] fields = popupMenu.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("mPopup".equals(field.getName())) {
+                    field.setAccessible(true);
+                    Object menuPopupHelper = field.get(popupMenu);
+                    Class<?> classPopupHelper = Class.forName(menuPopupHelper
+                            .getClass().getName());
+                    Method setForceIcons = classPopupHelper.getMethod(
+                            "setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuPopupHelper, true);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         popupMenu.show();

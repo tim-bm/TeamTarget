@@ -15,4 +15,9 @@
     <string name="new_project">新建项目</string>
     <string name="new_task">新建任务</string>
     <string name="new_schedule">新建日程</string>
+    <string name="recent_new">最新动态</string>
+    <string name="my_task">我的任务</string>
+    <string name="my_schedule">我的日程</string>
+    <string name="today_task">今天任务</string>
+    <string name="today_schedule">今天日程</string>
 </resources>

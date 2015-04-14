@@ -1,11 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-        <TextView
-            android:text="worktable"
+    <!-- icon -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:id="@+id/recent_news"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_radius_border">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/project_item_computer"
+                android:id="@+id/image1"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_new"
+                android:id="@+id/text1"
+                android:layout_below="@+id/image1"
+                android:layout_centerHorizontal="true"    />
+
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_radius_border"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:src="@drawable/project_item_computer"
+            android:id="@+id/image2"
+            android:layout_centerHorizontal="true"
+            />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_task"
+                android:id="@+id/text2"
+                android:layout_below="@+id/image2"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/background_radius_border">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/project_item_computer"
+            android:id="@+id/image3"
+            android:layout_centerHorizontal="true"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_task"
+                android:id="@+id/text3"
+                android:layout_below="@+id/image3"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/today_task"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <!--separating line -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+
+
+    <!--List of the today task list -->
+    <ListView
+        android:id="@+id/worktable_today_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="2px"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="false"
+        android:layout_marginLeft="35dp">
+
+    </ListView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/today_schedule"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+    <!--separating line -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+
+
+    <!--List of the today schedule list -->
+    <ListView
+        android:id="@+id/worktable_today_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="2px"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="false"
+        android:layout_marginLeft="35dp">
+
+    </ListView>
 
 </LinearLayout>
