@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,12 +18,15 @@ import java.lang.reflect.Method;
 import bm.com.graduationproject.teamtarget.listener.TabListener;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         ActionBar actionBar=getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -90,7 +94,6 @@ public class MainActivity extends Activity {
 
         popupMenu.getMenuInflater()
                 .inflate(R.menu.main_activity_actions_new_item, popupMenu.getMenu());
-
 
         // use reflect to show popupMenu item
 
