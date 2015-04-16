@@ -2,9 +2,10 @@ package bm.com.graduationproject.teamtarget;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,12 +15,21 @@ import android.widget.PopupMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
+import bm.com.graduationproject.teamtarget.adapter.MainFragmentPageAdapter;
+import bm.com.graduationproject.teamtarget.listener.TabChangeListener;
 import bm.com.graduationproject.teamtarget.listener.TabListener;
+import bm.com.graduationproject.teamtarget.listener.TabSwipeListener;
 
 
 public class MainActivity extends FragmentActivity {
 
+    private ActionBar actionBar;
+    private ViewPager viewPager;
+    private String[] tabTitles;
+    private ArrayList<Fragment> mainFragmentList;
+    private Tab tab1,tab2,tab3;
 
 
     @Override
@@ -28,7 +38,37 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
 
-        ActionBar actionBar=getActionBar();
+        actionBar=getActionBar();
+        mainFragmentList=new ArrayList<Fragment>(3);
+        mainFragmentList.add(new WorktableFragment());
+        mainFragmentList.add(new ProjectFragment());
+        mainFragmentList.add(new MessageFragment());
+
+        viewPager=(ViewPager)findViewById(R.id.main_view_page);
+
+        viewPager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(),mainFragmentList));
+
+        viewPager.setOnPageChangeListener(new TabChangeListener(this));
+
+        viewPager.setCurrentItem(0);
+
+      //  tabTitles =new String[] {"工作台","项目","消息"};
+
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        tab1=actionBar.newTab().setText(R.string.tab1).setContentDescription("tab1")
+                .setTabListener(new TabSwipeListener(viewPager));
+        actionBar.addTab(tab1);
+
+        tab2=actionBar.newTab().setText(R.string.tab2).setContentDescription("tab2")
+                .setTabListener(new TabSwipeListener(viewPager));
+        actionBar.addTab(tab2);
+
+        tab3=actionBar.newTab().setText(R.string.tab3).setContentDescription("tab3")
+                .setTabListener(new TabSwipeListener(viewPager));
+        actionBar.addTab(tab3);
+
+        /*ActionBar actionBar=getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
 
@@ -49,7 +89,7 @@ public class MainActivity extends FragmentActivity {
                 .setText(R.string.tab3)
                 .setTabListener(new TabListener<MessageFragment>(this,"message",MessageFragment.class));
 
-        actionBar.addTab(tab);
+        actionBar.addTab(tab);*/
     }
 
 

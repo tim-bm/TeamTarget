@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="@dimen/fragment_margin_top">
 
         <RelativeLayout
             android:id="@+id/recent_news"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/worktable_radius"
+            android:layout_height="@dimen/worktable_radius"
             android:gravity="center_vertical"
-            android:background="@drawable/background_radius_border">
+            android:background="@drawable/radius_icon">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -38,10 +38,10 @@
             </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/worktable_radius"
+            android:layout_height="@dimen/worktable_radius"
             android:gravity="center_vertical"
-            android:background="@drawable/background_radius_border"
+            android:background="@drawable/radius_icon"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp">
 
@@ -66,10 +66,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/worktable_radius"
+            android:layout_height="@dimen/worktable_radius"
             android:gravity="center_vertical"
-            android:background="@drawable/background_radius_border">
+            android:background="@drawable/radius_icon">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="15sp"
         android:gravity="left"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/fragment_margin_left"
         android:layout_marginTop="20dp"/>
 
     <!--separating line -->
@@ -106,7 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="3px"
         android:background="@android:color/darker_gray"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/fragment_margin_left"
         android:layout_marginTop="5dp"/>
 
 
@@ -120,7 +120,7 @@
         android:dividerHeight="2px"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="false"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="3dp"
         >
 
     </ListView>
@@ -133,7 +133,7 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="15sp"
         android:gravity="left"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/fragment_margin_left"
         android:layout_marginTop="20dp"/>
 
 
@@ -142,7 +142,7 @@
         android:layout_width="match_parent"
         android:layout_height="3px"
         android:background="@android:color/darker_gray"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/fragment_margin_left"
         android:layout_marginTop="5dp"/>
 
 
@@ -156,7 +156,7 @@
         android:dividerHeight="2px"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="false"
-        android:layout_marginLeft="35dp">
+        android:layout_marginLeft="3dp">
 
     </ListView>
 

@@ -12,15 +12,15 @@
      android:textColor="@android:color/darker_gray"
      android:textSize="15sp"
      android:gravity="left"
-     android:layout_marginLeft="20dp"
-     android:layout_marginTop="20dp"/>
+     android:layout_marginLeft="@dimen/fragment_margin_left"
+     android:layout_marginTop="@dimen/fragment_margin_top"/>
 
     <!--separating line -->
  <ImageView
      android:layout_width="match_parent"
      android:layout_height="3px"
      android:background="@android:color/darker_gray"
-     android:layout_marginLeft="20dp"
+     android:layout_marginLeft="@dimen/fragment_margin_left"
      android:layout_marginTop="5dp"/>
 
 
@@ -34,7 +34,7 @@
     android:dividerHeight="2px"
     android:headerDividersEnabled="true"
     android:footerDividersEnabled="false"
-    android:layout_marginLeft="35dp">
+    android:layout_marginLeft="@dimen/fragment_list_margin_left">
 
     </ListView>
 
@@ -69,7 +69,7 @@
     android:dividerHeight="2px"
     android:headerDividersEnabled="true"
     android:footerDividersEnabled="false"
-    android:layout_marginLeft="35dp">
+    android:layout_marginLeft="@dimen/fragment_list_margin_left">
 
     </ListView>
 </LinearLayout>

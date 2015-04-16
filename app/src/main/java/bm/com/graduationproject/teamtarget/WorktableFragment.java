@@ -1,7 +1,8 @@
 package bm.com.graduationproject.teamtarget;
 
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * Created by bm on 2015/4/6.
  */
-public class WorktableFragment extends android.app.Fragment {
+public class WorktableFragment extends Fragment {
 
     private ArrayList<HashMap<String,Object>> todayTaskList;
     private ArrayList<HashMap<String,Object>> todayScheduleList;
