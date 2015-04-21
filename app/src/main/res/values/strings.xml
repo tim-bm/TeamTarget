@@ -22,4 +22,7 @@
     <string name="today_schedule">今天日程</string>
     <string name="my_message">我的消息</string>
     <string name="title_activity_new_project">NewProjectActivity</string>
+    <string name="project_name">项目名称</string>
+    <string name="owner">所有者</string>
+
 </resources>

@@ -18,12 +18,15 @@
         </activity>
         <activity
             android:name=".NewProjectActivity"
-            android:label="@string/title_activity_new_project"
-            android:parentActivityName=".MainActivity" >
+            android:label="@string/new_project"
+            android:theme="@style/TeamTargetCustomActionBarTheme"
+            android:parentActivityName=".MainActivity">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bm.com.graduationproject.teamtarget.MainActivity" />
         </activity>
+
     </application>
 
 </manifest>

@@ -6,4 +6,5 @@
     <dimen name="fragment_margin_left">10dp</dimen>
     <dimen name="fragment_list_margin_left">25dp</dimen>
     <dimen name="worktable_radius">105dp</dimen>
+    <dimen name="spinner_margin_top">70dp</dimen>
 </resources>

@@ -10,6 +10,8 @@
         <item name="android:actionBarTabTextStyle">@style/TeamTargetActionBarTabsText</item>
         <item name="android:popupMenuStyle">@style/TeamTargetMenuItemBackground</item>
         <item name="android:textAppearanceLargePopupMenu">@style/TeamTargetMenuItemTextColor</item>
+        <!-- animation-->
+        <!--<item name="android:windowAnimationStyle">@style/TeamTargetActivityAnimation</item>-->
     </style>
 
     <!-- ActionBar styles -->
@@ -45,6 +47,14 @@
         parent="@android:style/TextAppearance.Holo.Widget.PopupMenu.Large">
         <item name="android:textColor">@android:color/white</item>
 
+    </style>
+    
+    <!--Activity Animation-->
+    <style name="TeamTargetActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/push_up_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/stand_still</item>
+        <item name="android:activityCloseEnterAnimation">@anim/stand_still</item>
+        <item name="android:activityCloseExitAnimation">@anim/pull_down_out</item>
     </style>
 </resources>
 
