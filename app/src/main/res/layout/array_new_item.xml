@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:padding="5dp">
+    >
+
+    <!--android:padding="5dp"-->
+
 
 <ImageView
     android:id="@+id/array_new_icon"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp"
     />
 
  <TextView
@@ -18,6 +25,10 @@
      android:layout_height="wrap_content"
      android:layout_toRightOf="@+id/array_new_icon"
      android:layout_centerVertical="true"
+     android:layout_marginLeft="@dimen/array_new_item_hint_left"
+     android:textSize="18sp"
+     android:paddingBottom="10dp"
+     android:paddingTop="10dp"
     />
 
   <TextView
@@ -25,6 +36,20 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentRight="true"
-      android:layout_centerVertical="true"/>
+      android:layout_centerVertical="true"
+      android:textSize="15sp"
+      android:textColor="@android:color/darker_gray"
+      android:paddingBottom="10dp"
+      android:paddingTop="10dp"/>
+
+    <!--item's separating line-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@android:color/darker_gray"
+        android:layout_alignParentBottom="true"
+
+        />
 
 </RelativeLayout>
+

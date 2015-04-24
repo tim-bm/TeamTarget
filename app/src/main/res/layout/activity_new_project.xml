@@ -25,6 +25,7 @@
         android:divider="@null"
         android:layout_below="@+id/edit_new_project"
         android:paddingTop="40dp"
+
         >
         <!--android:divider="@android:color/darker_gray"-->
         <!--android:dividerHeight="2px"-->

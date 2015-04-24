@@ -24,5 +24,10 @@
     <string name="title_activity_new_project">NewProjectActivity</string>
     <string name="project_name">项目名称</string>
     <string name="owner">所有者</string>
+    <string name="publicity">公开性</string>
+    <string name="personal_project">个人项目</string>
+    <string name="cancel">取消</string>
+    <string name="private_project">私有项目</string>
+    <string name="public_project">公开项目</string>
 
 </resources>
