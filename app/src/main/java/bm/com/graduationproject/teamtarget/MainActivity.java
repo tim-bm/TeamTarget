@@ -2,7 +2,10 @@ package bm.com.graduationproject.teamtarget;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,9 +22,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import bm.com.graduationproject.teamtarget.adapter.MainFragmentPageAdapter;
+import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
+import bm.com.graduationproject.teamtarget.dbHelper.DBOpenHelper;
 import bm.com.graduationproject.teamtarget.listener.TabChangeListener;
 import bm.com.graduationproject.teamtarget.listener.TabListener;
 import bm.com.graduationproject.teamtarget.listener.TabSwipeListener;
+import bm.com.graduationproject.teamtarget.model.User;
 
 
 public class MainActivity extends FragmentActivity {
@@ -32,6 +38,8 @@ public class MainActivity extends FragmentActivity {
     private ArrayList<Fragment> mainFragmentList;
     private Tab tab1,tab2,tab3;
 
+    //database manager
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,28 +77,10 @@ public class MainActivity extends FragmentActivity {
                 .setTabListener(new TabSwipeListener(viewPager));
         actionBar.addTab(tab3);
 
-        /*ActionBar actionBar=getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(false);
 
-        Tab tab=actionBar.newTab()
-                .setText(R.string.tab1)
-                .setTabListener(new TabListener<WorktableFragment>(this,"worktable",WorktableFragment.class));
+        //test database
+           initialDatabase();
 
-        actionBar.addTab(tab);
-
-        tab=actionBar.newTab()
-                .setText(R.string.tab2)
-                .setTabListener(new TabListener<ProjectFragment>(this,"project",ProjectFragment.class));
-
-        actionBar.addTab(tab);
-
-
-        tab=actionBar.newTab()
-                .setText(R.string.tab3)
-                .setTabListener(new TabListener<MessageFragment>(this,"message",MessageFragment.class));
-
-        actionBar.addTab(tab);*/
     }
 
 
@@ -194,5 +184,33 @@ public class MainActivity extends FragmentActivity {
        // animation
       overridePendingTransition(R.anim.push_up_in,R.anim.stand_still);
        // overridePendingTransition(android.R.anim.slide_out_right,android.R.anim.slide_in_left);
+    }
+    private void initialDatabase(){
+
+        dbManager=DBManager.getInstance(MainActivity.this);
+
+        //open database
+        SQLiteDatabase database;
+       database=dbManager.openDB();
+
+    //   database= DBOpenHelper.getInstance(MainActivity.this).getWritableDatabase();
+        //operation on database
+
+        ContentValues values=new ContentValues();
+        values.put("user_name","bbb");
+        values.put("email","aaa@qq.com");
+
+
+       database.insert("user", null, values);
+
+       Cursor cursor= database.rawQuery("select * from user", null);
+        User u=new User();
+        while(cursor.moveToNext()){
+            u=new User(cursor.getInt(0),cursor.getString(1),cursor.getString(2));
+        }
+
+        Log.d("user",u.toString());
+        //close database
+        dbManager.closeDB(database);
     }
 }
