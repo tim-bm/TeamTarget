@@ -79,7 +79,7 @@ public class MainActivity extends FragmentActivity {
 
 
         //test database
-           initialDatabase();
+          initialDatabase();
 
     }
 
@@ -196,12 +196,13 @@ public class MainActivity extends FragmentActivity {
     //   database= DBOpenHelper.getInstance(MainActivity.this).getWritableDatabase();
         //operation on database
 
-        ContentValues values=new ContentValues();
+        //insert
+       /* ContentValues values=new ContentValues();
         values.put("user_name","bbb");
-        values.put("email","aaa@qq.com");
+        values.put("user_email","aaa@qq.com");
+        database.insert("user", null, values);*/
 
 
-       database.insert("user", null, values);
 
        Cursor cursor= database.rawQuery("select * from user", null);
         User u=new User();

@@ -138,13 +138,13 @@ public class NewProjectActivity extends Activity {
                t.setText("点击了");*/
 
 
-            SimpleAdapter adapter=(SimpleAdapter)adapterView.getAdapter();
+           // SimpleAdapter adapter=(SimpleAdapter)adapterView.getAdapter();
 
             TextView title=(TextView)view.findViewById(R.id.array_hint);
             TextView selection=(TextView)view.findViewById(R.id.array_selected);
 
 
-            SimpleAdapter builderListSimpleAdapter;
+          //  SimpleAdapter builderListSimpleAdapter;
 
 
             String[] strKeys={"icon","selection","tick","ifSelected"};
@@ -259,6 +259,15 @@ public class NewProjectActivity extends Activity {
 
         //set list item listener
         dialogListView.setOnItemClickListener(new DialogListItemClickListener());
+
+        //set cancel textView listener
+        TextView cancel=(TextView)dialogLayout.findViewById(R.id.dialog_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                choiceDialog.dismiss();
+            }
+        });
 
         //set title
         TextView titleTextView=(TextView)dialogLayout.findViewById(R.id.dialog_title);
