@@ -32,6 +32,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             ");";
     final String CREATE_TABLE_TASK="CREATE TABLE \"task\" (" +
             "\"task_id\"  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "\"task_name\"  TEXT," +
             "\"description\"  TEXT," +
             "\"creator\"  INTEGER," +
             "\"deadline\"  TEXT NOT NULL," +
@@ -80,7 +81,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_TASK_LIST_2="INSERT INTO \"main\".\"task_list\" VALUES (2, '将要做', 1);";
     final String INSERT_TASK_LIST_3="INSERT INTO \"main\".\"task_list\" VALUES (3, '紧急事项', 1);";
 
-    final String INSERT_TASK="INSERT INTO \"task\" VALUES (1, '待完成任务', 1, '2015-4-30', '我的评论', 1, 1, 1, 1);";
+    final String INSERT_TASK_1="INSERT INTO \"task\" VALUES (1, '待完成任务1','待完成任务1', 1, '2015-4-30', '我的评论1', 1, 1, 1, 1);";
+    final String INSERT_TASK_2="INSERT INTO \"task\" VALUES (2, '待完成任务2','待完成任务2', 1, '2015-4-30', '我的评论2', 1, 1, 2, 1);";
+    final String INSERT_TASK_3="INSERT INTO \"task\" VALUES (3, '待完成任务3','待完成任务3', 1, '2015-4-30', '我的评论3', 1, 1, 3, 1);";
+    final String INSERT_TASK_4="INSERT INTO \"task\" VALUES (4, '我的任务','这是一条分配给我的任务', 1, '2015-4-30', '我的评论4', 1, 1, 1, 1);";
 
     final String INSERT_PROJECT_PARTICIPANT_1="INSERT INTO \"project_participant\" VALUES (1, 1);";
     final String INSERT_PROJECT_PARTICIPANT_2="INSERT INTO \"project_participant\" VALUES (1, 2);";
@@ -133,7 +137,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(INSERT_TASK_LIST_2);
         sqLiteDatabase.execSQL(INSERT_TASK_LIST_3);
 
-        sqLiteDatabase.execSQL(INSERT_TASK);
+        sqLiteDatabase.execSQL(INSERT_TASK_1);
+        sqLiteDatabase.execSQL(INSERT_TASK_2);
+        sqLiteDatabase.execSQL(INSERT_TASK_3);
+        sqLiteDatabase.execSQL(INSERT_TASK_4);
 
         sqLiteDatabase.execSQL(INSERT_PROJECT_PARTICIPANT_1);
         sqLiteDatabase.execSQL(INSERT_PROJECT_PARTICIPANT_2);

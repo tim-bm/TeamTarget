@@ -19,14 +19,21 @@
         <activity
             android:name=".NewProjectActivity"
             android:label="@string/new_project"
-            android:theme="@style/TeamTargetCustomActionBarTheme"
-            android:parentActivityName=".MainActivity">
-
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bm.com.graduationproject.teamtarget.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".TaskListActivity"
+            android:label="@string/title_activity_task_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bm.com.graduationproject.teamtarget.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

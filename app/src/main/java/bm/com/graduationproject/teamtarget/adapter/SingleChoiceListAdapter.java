@@ -19,7 +19,7 @@ import bm.com.graduationproject.teamtarget.R;
  */
 public class SingleChoiceListAdapter  extends BaseAdapter {
 
-    private  static LayoutInflater inflater;
+    private static LayoutInflater inflater;
     private static Context mContext;
     //can be set to be a object list
     private List<HashMap<String,Object>> dataList;

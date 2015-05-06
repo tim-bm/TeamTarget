@@ -1,17 +1,25 @@
 package bm.com.graduationproject.teamtarget;
 
 //import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
+import bm.com.graduationproject.teamtarget.dbService.ProjectDBService;
+import bm.com.graduationproject.teamtarget.model.Project;
 
 /**
  * Created by bm on 2015/4/6.
@@ -23,9 +31,16 @@ public class ProjectFragment extends Fragment {
     private SimpleAdapter commonListAdapter;
     private SimpleAdapter participatedListAdapter;
 
+    //rootView
+    private View rootView;
+
+    //data
+    private DBManager dbManager;
+    private ProjectDBService projectDBService;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-             View rootView=inflater.inflate(R.layout.project,null);
+              rootView=inflater.inflate(R.layout.project,null);
 
 
         ListView commonListView=(ListView)rootView.findViewById(R.id.common_project);
@@ -34,11 +49,16 @@ public class ProjectFragment extends Fragment {
         commonList=new ArrayList<HashMap<String, Object>>(3);
         participatedList=new ArrayList<HashMap<String, Object>>(3);
 
-        for(int i=0;i<3;i++){
+        //initial database connection
+        projectDBService=new ProjectDBService(DBManager.getInstance(rootView.getContext()));
+        List<Project>projectList=projectDBService.getAllProject();
+
+        for(int i=0;i<projectList.size();i++){
 
             HashMap<String,Object> map=new HashMap<String, Object>();
-            map.put("project_item_title","这是常用项目"+i);
+            map.put("project_item_title",projectList.get(i).getName());
             map.put("project_item_image",R.drawable.project_item_computer);
+            map.put("project_item_id",projectList.get(i).getId());
             commonList.add(map);
         }
 
@@ -52,8 +72,8 @@ public class ProjectFragment extends Fragment {
 
         commonListAdapter=new SimpleAdapter
                 (rootView.getContext(),commonList,R.layout.array_project_item,
-                        new String[]{"project_item_title","project_item_image"},
-                        new int[]{R.id.project_item_title,R.id.project_item_image});
+                        new String[]{"project_item_title","project_item_image","project_item_id"},
+                        new int[]{R.id.project_item_title,R.id.project_item_image,R.id.project_item_id});
 
 
         participatedListAdapter=new SimpleAdapter
@@ -64,29 +84,39 @@ public class ProjectFragment extends Fragment {
 
         commonListView.setAdapter(commonListAdapter);
         participatedListView.setAdapter(participatedListAdapter);
-//        ListView commonList=(ListView)rootView.findViewById(R.id.common_project);
-//        ListView participatedList=(ListView)rootView.findViewById(R.id.participated_project);
-//
-//
-//        String[] arr1={"aaa","bbb","ccc"};
-//        ArrayAdapter<String> adapter1= new ArrayAdapter<String>
-//                (rootView.getContext(),R.layout.array_project_item,arr1);
-//       commonList.setAdapter(adapter1);
-//
-//        String[] arr2={"ddd","eee","fff"};
-//
-//        ArrayAdapter<String> adapter2= new ArrayAdapter<String>
-//                (rootView.getContext(),R.layout.array_project_item,arr2);
-//        participatedList.setAdapter(adapter2);
+
+        //set on item click listener
+
+        commonListView.setOnItemClickListener(new ProjectItemClickListener());
+
 
         return rootView;
     }
 
-    private  void  initListView(View view,int resourceId){
+    class ProjectItemClickListener implements AdapterView.OnItemClickListener{
+
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            TextView idTextView=(TextView)view.findViewById(R.id.project_item_id);
+            TextView titleTextView=(TextView)view.findViewById(R.id.project_item_title);
+
+            String projectId=idTextView.getText().toString();
+            String projectName=titleTextView.getText().toString();
+
+            Intent intent =new Intent(rootView.getContext(),TaskListActivity.class);
+            intent.putExtra("projectId",Integer.parseInt(projectId));
+            intent.putExtra("projectName",projectName);
+
+            startActivity(intent);
 
 
 
+        }
     }
+
+
 
 
 }

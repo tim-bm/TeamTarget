@@ -29,5 +29,6 @@
     <string name="cancel">取消</string>
     <string name="private_project">私有项目</string>
     <string name="public_project">公开项目</string>
+    <string name="title_activity_task_list">TaskListActivity</string>
 
 </resources>
