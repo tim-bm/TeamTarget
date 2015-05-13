@@ -2,7 +2,6 @@ package bm.com.graduationproject.teamtarget;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -79,7 +78,7 @@ public class MainActivity extends FragmentActivity {
 
 
         //test database
-          initialDatabase();
+    //      initialDatabase();
 
     }
 

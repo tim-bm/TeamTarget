@@ -34,6 +34,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bm.com.graduationproject.teamtarget.MainActivity" />
         </activity>
+        <activity
+            android:name=".TaskActivity"
+            android:label="@string/title_activity_task"
+            android:parentActivityName=".TaskListActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bm.com.graduationproject.teamtarget.TaskListActivity" />
+        </activity>
+        <activity
+            android:name=".EditTaskActivity"
+            android:label="@string/title_activity_edit_task_description"
+            android:parentActivityName=".TaskActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
+        </activity>
     </application>
 
 </manifest>

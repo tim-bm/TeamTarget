@@ -67,6 +67,16 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             "CONSTRAINT \"fk_project\" FOREIGN KEY (\"project_id\") REFERENCES \"project\" (\"project_id\") ON DELETE CASCADE ON UPDATE CASCADE" +
             ");";
 
+
+    final String CREATE_TABLE_COMMENT="CREATE TABLE \"comment\"("+
+            "\"comment_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "\"user_id\"  INTEGER NOT NULL," +
+            "\"task_id\"  INTEGER NOT NULL," +
+            "\"content\"  TEXT," +
+            "\"date\"  TEXT," +
+            "CONSTRAINT \"fk_user\" FOREIGN KEY (\"user_id\") REFERENCES \"user\" (\"user_id\") ON DELETE CASCADE ON UPDATE CASCADE,"+
+            "CONSTRAINT \"fk_task\" FOREIGN KEY (\"task_id\") REFERENCES \"task\" (\"task_id\") ON DELETE CASCADE ON UPDATE CASCADE"+
+            ");";
     //initial data
     final String INSERT_USER_1="INSERT INTO \"user\" VALUES (1, 'aaa', 'aaa@qq.com');";
     final String INSERT_USER_2="INSERT INTO \"user\" VALUES (2, 'bbb', 'bbb@qq.com');";
@@ -81,13 +91,18 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_TASK_LIST_2="INSERT INTO \"main\".\"task_list\" VALUES (2, '将要做', 1);";
     final String INSERT_TASK_LIST_3="INSERT INTO \"main\".\"task_list\" VALUES (3, '紧急事项', 1);";
 
-    final String INSERT_TASK_1="INSERT INTO \"task\" VALUES (1, '待完成任务1','待完成任务1', 1, '2015-4-30', '我的评论1', 1, 1, 1, 1);";
-    final String INSERT_TASK_2="INSERT INTO \"task\" VALUES (2, '待完成任务2','待完成任务2', 1, '2015-4-30', '我的评论2', 1, 1, 2, 1);";
-    final String INSERT_TASK_3="INSERT INTO \"task\" VALUES (3, '待完成任务3','待完成任务3', 1, '2015-4-30', '我的评论3', 1, 1, 3, 1);";
-    final String INSERT_TASK_4="INSERT INTO \"task\" VALUES (4, '我的任务','这是一条分配给我的任务', 1, '2015-4-30', '我的评论4', 1, 1, 1, 1);";
+    final String INSERT_TASK_1="INSERT INTO \"task\" VALUES (1, '待完成任务1','待完成任务1', 1, '2015-4-30', '0', 1, 1, 1, 1);";
+    final String INSERT_TASK_2="INSERT INTO \"task\" VALUES (2, '待完成任务2','待完成任务2', 1, '2015-4-30', '1', 1, 1, 2, 1);";
+    final String INSERT_TASK_3="INSERT INTO \"task\" VALUES (3, '待完成任务3','待完成任务3', 1, '2015-4-30', '0', 1, 1, 3, 1);";
+    final String INSERT_TASK_4="INSERT INTO \"task\" VALUES (4, '我的任务','这是一条分配给我的任务', 1, '2015-4-30', '1', 1, 1, 1, 1);";
 
     final String INSERT_PROJECT_PARTICIPANT_1="INSERT INTO \"project_participant\" VALUES (1, 1);";
     final String INSERT_PROJECT_PARTICIPANT_2="INSERT INTO \"project_participant\" VALUES (1, 2);";
+
+
+    final String INSERT_COMMENT_1="INSERT INTO \"comment\" VALUES(1,1,1,'这是评论1','2015-5-12');";
+    final String INSERT_COMMENT_2="INSERT INTO \"comment\" VALUES(2,1,1,'这是评论2','2015-5-12');";
+    final String INSERT_COMMENT_3="INSERT INTO \"comment\" VALUES(3,1,1,'这是评论3','2015-5-12');";
 
 
 
@@ -121,6 +136,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TABLE_TASK_LIST);
         sqLiteDatabase.execSQL(CREATE_TABLE_USER);
         sqLiteDatabase.execSQL(CREATE_TABLE_PROJECT_PARTICIPANT);
+        sqLiteDatabase.execSQL(CREATE_TABLE_COMMENT);
 
 
         //initial data
@@ -144,6 +160,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(INSERT_PROJECT_PARTICIPANT_1);
         sqLiteDatabase.execSQL(INSERT_PROJECT_PARTICIPANT_2);
+
+        sqLiteDatabase.execSQL(INSERT_COMMENT_1);
+        sqLiteDatabase.execSQL(INSERT_COMMENT_2);
+        sqLiteDatabase.execSQL(INSERT_COMMENT_3);
 
 
     }

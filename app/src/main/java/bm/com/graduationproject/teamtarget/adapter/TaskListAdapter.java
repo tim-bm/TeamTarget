@@ -67,6 +67,7 @@ public class TaskListAdapter extends BaseAdapter {
             holder.title=(TextView)convertView.findViewById(R.id.task_title_in_list);
             holder.checkList=(TextView)convertView.findViewById(R.id.task_checklist_in_list);
             holder.comment=(TextView)convertView.findViewById(R.id.task_comment_in_list);
+            holder.id=(TextView)convertView.findViewById(R.id.task_id);
             convertView.setTag(holder);
 
         }else{
@@ -76,6 +77,7 @@ public class TaskListAdapter extends BaseAdapter {
 
         //set information of the view
         holder.title.setText(tasks.get(position).getName());
+        holder.id.setText(String.valueOf(tasks.get(position).getId()));
 
         return convertView;
 
@@ -89,6 +91,7 @@ public class TaskListAdapter extends BaseAdapter {
         TextView title;
         TextView checkList;
         TextView comment;
+        TextView id;
 
     }
 }

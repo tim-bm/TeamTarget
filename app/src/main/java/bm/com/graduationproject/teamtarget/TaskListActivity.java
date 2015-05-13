@@ -51,8 +51,14 @@ public class TaskListActivity extends FragmentActivity {
         for(int i=0;i<taskLists.size();i++){
             fragment=new TaskListFragment();
             fragment.setTaskListId(taskLists.get(i).getId());
+
+            fragment.setProjectId(projectId);
+            fragment.setProjectName(projectName);
+
+
             taskListFragments.add(fragment);
         }
+
 
 
         //test
