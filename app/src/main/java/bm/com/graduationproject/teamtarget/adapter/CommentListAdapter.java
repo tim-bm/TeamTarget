@@ -12,6 +12,7 @@ import java.util.List;
 
 import bm.com.graduationproject.teamtarget.R;
 import bm.com.graduationproject.teamtarget.model.Comment;
+import bm.com.graduationproject.teamtarget.model.User;
 
 /**
  * Created by bm on 2015/5/12.
@@ -20,14 +21,16 @@ public class CommentListAdapter extends BaseAdapter {
 
 
     private List<Comment> comments;
+    private List<User> users;
     private static LayoutInflater inflater;
     private static Context mContext;
 
 
-    public CommentListAdapter(Context context,List<Comment> comments){
+    public CommentListAdapter(Context context,List<Comment> comments,List<User> users){
         mContext=context;
         inflater= LayoutInflater.from(context);
         this.comments=comments;
+        this.users=users;
 
     }
 
@@ -69,7 +72,7 @@ public class CommentListAdapter extends BaseAdapter {
 
 
         holder.userIcon.setImageResource(R.drawable.ic_user);
-        holder.userName.setText(String.valueOf(comments.get(position).getUserId()));
+        holder.userName.setText(users.get(position).getName());
         holder.date.setText(comments.get(position).getDate());
         holder.content.setText(comments.get(position).getContent());
 
@@ -81,6 +84,7 @@ public class CommentListAdapter extends BaseAdapter {
         TextView userName;
         TextView date;
         TextView content;
+
 
 
     }

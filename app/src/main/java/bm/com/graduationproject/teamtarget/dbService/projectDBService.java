@@ -43,6 +43,21 @@ public class ProjectDBService {
         return projects;
 
     }
+    public Project getProjectById(int projectId){
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+
+        Cursor cursor=database.rawQuery("select * from project where project_id=?",
+                new String[]{String.valueOf(projectId)});
+        Project p=new Project();
+        while(cursor.moveToNext()){
+            p=new Project(cursor.getInt(0),cursor.getString(1),cursor.getString(2),
+                    cursor.getString(3),cursor.getInt(4),cursor.getInt(5));
+        }
+
+        dbManager.closeDB(database);
+        return p;
+    }
 
 
 

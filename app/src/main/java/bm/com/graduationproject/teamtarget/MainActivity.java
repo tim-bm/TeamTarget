@@ -27,6 +27,7 @@ import bm.com.graduationproject.teamtarget.listener.TabChangeListener;
 import bm.com.graduationproject.teamtarget.listener.TabListener;
 import bm.com.graduationproject.teamtarget.listener.TabSwipeListener;
 import bm.com.graduationproject.teamtarget.model.User;
+import bm.com.graduationproject.teamtarget.utils.AppContext;
 
 
 public class MainActivity extends FragmentActivity {
@@ -45,6 +46,9 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //set set user info
+        setUserInfo();
 
         actionBar=getActionBar();
         mainFragmentList=new ArrayList<Fragment>(3);
@@ -183,6 +187,12 @@ public class MainActivity extends FragmentActivity {
        // animation
       overridePendingTransition(R.anim.push_up_in,R.anim.stand_still);
        // overridePendingTransition(android.R.anim.slide_out_right,android.R.anim.slide_in_left);
+    }
+
+    private void setUserInfo(){
+        AppContext appContext=AppContext.getInstance();
+        appContext.setUserId(1);
+        appContext.setUserName("aaa");
     }
     private void initialDatabase(){
 

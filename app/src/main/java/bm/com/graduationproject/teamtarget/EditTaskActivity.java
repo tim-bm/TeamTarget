@@ -102,14 +102,19 @@ public class EditTaskActivity extends Activity {
     private void backToTaskActivity(){
 
         Intent infoIntent=getIntent();
-        int projectId=infoIntent.getIntExtra("projectId",-1);
-        String projectName=infoIntent.getStringExtra("projectName");
-
-
         Intent intent=new Intent(this,TaskActivity.class);
 
-        intent.putExtra("projectId",projectId);
-        intent.putExtra("projectName",projectName);
+        if(infoIntent.getIntExtra("fromMyTask",-1)==-1){
+            int projectId=infoIntent.getIntExtra("projectId",-1);
+            String projectName=infoIntent.getStringExtra("projectName");
+
+            intent.putExtra("projectId",projectId);
+            intent.putExtra("projectName",projectName);
+
+        }else{
+            intent.putExtra("fromMyTask",1);
+        }
+
         intent.putExtra("taskId",taskId);
 
         startActivity(intent);

@@ -12,10 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -24,15 +26,20 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import bm.com.graduationproject.teamtarget.adapter.CommentListAdapter;
+import bm.com.graduationproject.teamtarget.adapter.TagListAdapter;
 import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
 import bm.com.graduationproject.teamtarget.dbService.CommentDBService;
 import bm.com.graduationproject.teamtarget.dbService.TaskDBService;
+import bm.com.graduationproject.teamtarget.dbService.UserDBService;
 import bm.com.graduationproject.teamtarget.model.Comment;
 import bm.com.graduationproject.teamtarget.model.Task;
+import bm.com.graduationproject.teamtarget.model.User;
+import bm.com.graduationproject.teamtarget.utils.Tag;
 
 
 public class TaskActivity extends Activity {
@@ -62,11 +69,19 @@ public class TaskActivity extends Activity {
 
     //adapter
     private CommentListAdapter commentListAdapter;
-
+    private TagListAdapter tagListAdapter;
 
     //comment
     private List<Comment> commentList;
     private ListView commentListView;
+
+    //tag and dialog
+    private TextView tagTextView;
+    private Dialog tagDialog;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,14 +108,25 @@ public class TaskActivity extends Activity {
 
 
                 Intent infoIntent=getIntent();
-                int projectId=infoIntent.getIntExtra("projectId",-1);
-                String projectName=infoIntent.getStringExtra("projectName");
-
-                
                 Intent intent=new Intent(TaskActivity.this,EditTaskActivity.class);
-                intent.putExtra("projectId",projectId);
-                intent.putExtra("projectName",projectName);
-                intent.putExtra("taskId",taskId);
+
+                //determine if from myTask or task activity
+                if(infoIntent.getIntExtra("fromMyTask",-1)==-1){
+
+                    int projectId=infoIntent.getIntExtra("projectId",-1);
+                    String projectName=infoIntent.getStringExtra("projectName");
+
+
+
+                    intent.putExtra("projectId",projectId);
+                    intent.putExtra("projectName",projectName);
+                    intent.putExtra("taskId",taskId);
+
+                }else{
+                    intent.putExtra("taskId",taskId);
+                    intent.putExtra("fromMyTask",1);
+                }
+
 
                 startActivity(intent);
             }
@@ -153,6 +179,32 @@ public class TaskActivity extends Activity {
             }
         });
 
+        //set tag
+        RelativeLayout tagClick=(RelativeLayout)findViewById(R.id.task_tag);
+         tagTextView=(TextView)findViewById(R.id.task_tag_color);
+        //tagTextView.setBackgroundResource(R.drawable.text_view_radius_border);
+
+        tagListAdapter=new TagListAdapter(this,getPreparedTags());
+
+        if(task.getTag()!=-1){
+            tagListAdapter.setSelectedPosition(task.getTag());
+            tagListAdapter.notifyDataSetChanged();
+            tagTextView.setBackgroundResource(getPreparedTags().get(task.getTag()).getResource());
+        }
+
+        tagClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showTagDialog();
+
+            }
+        });
+
+
+
+
+
         //get comments
         commentDBService=new CommentDBService(DBManager.getInstance(this));
         commentList=commentDBService.getCommentsByTaskId(taskId);
@@ -160,13 +212,27 @@ public class TaskActivity extends Activity {
         commentListView=(ListView)findViewById(R.id.comment_list_view);
 
         if(commentList.size()!=0){
+
+            //find user name
+            UserDBService userDBService=new UserDBService(DBManager.getInstance(this));
+            List<User> users=new ArrayList<User>();
+            User u;
+            for(int i=0;i<commentList.size();i++){
+                u=userDBService.getUserByUserId(commentList.get(i).getUserId());
+                users.add(u);
+            }
+
             //set adapter
-            commentListAdapter=new CommentListAdapter(this,commentList);
+            commentListAdapter=new CommentListAdapter(this,commentList,users);
             commentListAdapter.notifyDataSetChanged();
             commentListView.setAdapter(commentListAdapter);
             setListViewHeight(commentListView);
 
         }
+
+
+
+
 
 
 
@@ -232,8 +298,6 @@ public class TaskActivity extends Activity {
                 }
             });
 
-
-
             dateDialog=builder.create();
             dateDialog.show();
 
@@ -265,16 +329,24 @@ public class TaskActivity extends Activity {
 
 
             Intent infoIntent=getIntent();
-            int projectId=infoIntent.getIntExtra("projectId",-1);
-            String projectName=infoIntent.getStringExtra("projectName");
+            if(infoIntent.getIntExtra("fromMyTask",-1)==-1){
+                int projectId=infoIntent.getIntExtra("projectId",-1);
+                String projectName=infoIntent.getStringExtra("projectName");
 
 
 
-            Intent intent =new Intent(this,TaskListActivity.class);
-            intent.putExtra("projectId",projectId);
-            intent.putExtra("projectName",projectName);
+                Intent intent =new Intent(this,TaskListActivity.class);
+                intent.putExtra("projectId",projectId);
+                intent.putExtra("projectName",projectName);
 
-            startActivity(intent);
+                startActivity(intent);
+
+
+            }else{
+                Intent intent_my=new Intent(this,MyTaskActivity.class);
+                startActivity(intent_my);
+            }
+
 
           // onBackPressed();
             return true;
@@ -306,7 +378,7 @@ public class TaskActivity extends Activity {
 
             View listItem=adapter.getView(i,null,listView);
 
-            listItem.measure(1,1);
+            listItem.measure(0,0);
             totalHeight+=listItem.getMeasuredHeight();
         }
 
@@ -314,6 +386,59 @@ public class TaskActivity extends Activity {
         params.height=totalHeight+(listView.getDividerHeight()*(adapter.getCount()-1));
         listView.setLayoutParams(params);
 
+    }
+    private void showTagDialog(){
+
+        LinearLayout tagDialogLinearLayout=(LinearLayout)getLayoutInflater()
+                .inflate(R.layout.dialog_tag_selection, null);
+
+        ListView tagListView=(ListView)tagDialogLinearLayout.findViewById(R.id.task_tag_list_view);
+        tagListView.setAdapter(tagListAdapter);
+
+        //set cancel button
+        TextView cancel =(TextView)tagDialogLinearLayout.findViewById(R.id.dialog_tag_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tagDialog.dismiss();
+            }
+        });
+
+
+        //set listItem listener
+        tagListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                tagListAdapter.setSelectedPosition(i);
+                tagListAdapter.notifyDataSetChanged();
+
+
+                List<Tag> tagColor=getPreparedTags();
+                tagTextView.setBackgroundResource(tagColor.get(i).getResource());
+                task.setTag(tagColor.get(i).getSign());
+                taskDBService.updateTask(task);
+               tagDialog.dismiss();
+
+            }
+        });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(TaskActivity.this);
+        builder.setView(tagDialogLinearLayout);
+        tagDialog=builder.create();
+        tagDialog.show();
+    }
+    private List<Tag> getPreparedTags(){
+        List<Tag> tags=new ArrayList<Tag>(3);
+
+        Tag t;
+        t=new Tag(R.drawable.tag_appearance_red,0,"紧急");
+        tags.add(t);
+        t=new Tag(R.drawable.tag_appearance_yellow,1,"一般");
+        tags.add(t);
+        t=new Tag(R.drawable.tag_appearance_green,2,"正常");
+        tags.add(t);
+
+        return  tags;
     }
 
 }

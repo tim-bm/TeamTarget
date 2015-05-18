@@ -39,5 +39,11 @@
     <string name="comment">评论</string>
     <string name="title_activity_edit_task_description">EditTaskDescriptionActivity</string>
     <string name="action_tick">Tick</string>
+    <string name="title_activity_my_task">MyTaskActivity</string>
+    <string name="working_on">进行中</string>
+    <string name="out_of_date">已过期</string>
+    <string name="finished">已完成</string>
+
+
 
 </resources>

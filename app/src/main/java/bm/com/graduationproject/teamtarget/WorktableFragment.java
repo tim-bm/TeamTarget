@@ -1,6 +1,7 @@
 package bm.com.graduationproject.teamtarget;
 
 //import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -15,6 +16,8 @@ import android.widget.SimpleAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import bm.com.graduationproject.teamtarget.utils.AppContext;
 
 /**
  * Created by bm on 2015/4/6.
@@ -31,7 +34,7 @@ public class WorktableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        View rootView =inflater.inflate(R.layout.worktable,null);
+        final View rootView =inflater.inflate(R.layout.worktable,null);
 
 
         ListView todayTaskListView=(ListView)rootView.findViewById(R.id.worktable_today_task);
@@ -42,6 +45,20 @@ public class WorktableFragment extends Fragment {
         todayTaskListAdapter=new SimpleAdapter
                 (rootView.getContext(),getList(),R.layout.array_worktable_today_task,strKeys,ids);
         todayTaskListView.setAdapter(todayTaskListAdapter);
+
+
+        //my task button
+
+        RelativeLayout myTask=(RelativeLayout)rootView.findViewById(R.id.worktable_my_task);
+        myTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(rootView.getContext(),MyTaskActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         return rootView;
 

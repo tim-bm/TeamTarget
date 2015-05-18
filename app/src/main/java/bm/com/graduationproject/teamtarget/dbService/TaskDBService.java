@@ -3,6 +3,7 @@ package bm.com.graduationproject.teamtarget.dbService;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.renderscript.Sampler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,29 @@ public class TaskDBService {
         }
         dbManager.closeDB(database);
         return t;
+    }
+
+    public List<Task> getTasksByDistributed(int userId){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+
+        List<Task> tasks=new ArrayList<Task>();
+
+        Cursor cursor=database.rawQuery("select * from task where distribute_to=?"
+                ,new String[]{String.valueOf(userId)});
+
+        Task t;
+        while (cursor.moveToNext()){
+
+            t=new Task(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),
+                    cursor.getString(5),cursor.getInt(6),cursor.getInt(7),cursor.getInt(8),cursor.getInt(9));
+
+            tasks.add(t);
+        }
+
+        dbManager.closeDB(database);
+        return tasks;
     }
 
     public int updateTask(Task task){

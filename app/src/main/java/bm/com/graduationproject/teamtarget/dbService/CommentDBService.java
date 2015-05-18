@@ -36,4 +36,14 @@ public class CommentDBService {
             dbManager.closeDB(database);
         return comments;
     }
+    public int getCommentCountByTaskId(int taskId){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        Cursor cursor=database.rawQuery("select count(*) from comment where task_id=?",
+                new String[]{String.valueOf(taskId)});
+        cursor.moveToFirst();
+        return  new Long(cursor.getLong(0)).intValue();
+
+    }
 }

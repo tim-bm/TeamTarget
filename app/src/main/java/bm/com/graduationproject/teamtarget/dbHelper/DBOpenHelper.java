@@ -91,10 +91,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_TASK_LIST_2="INSERT INTO \"main\".\"task_list\" VALUES (2, '将要做', 1);";
     final String INSERT_TASK_LIST_3="INSERT INTO \"main\".\"task_list\" VALUES (3, '紧急事项', 1);";
 
-    final String INSERT_TASK_1="INSERT INTO \"task\" VALUES (1, '待完成任务1','待完成任务1', 1, '2015-4-30', '0', 1, 1, 1, 1);";
-    final String INSERT_TASK_2="INSERT INTO \"task\" VALUES (2, '待完成任务2','待完成任务2', 1, '2015-4-30', '1', 1, 1, 2, 1);";
-    final String INSERT_TASK_3="INSERT INTO \"task\" VALUES (3, '待完成任务3','待完成任务3', 1, '2015-4-30', '0', 1, 1, 3, 1);";
-    final String INSERT_TASK_4="INSERT INTO \"task\" VALUES (4, '我的任务','这是一条分配给我的任务', 1, '2015-4-30', '1', 1, 1, 1, 1);";
+    final String INSERT_TASK_1="INSERT INTO \"task\" VALUES (1, '待完成任务1','待完成任务1', 1, '2015-4-30', '0', 0, 1, 1, 1);";
+    final String INSERT_TASK_2="INSERT INTO \"task\" VALUES (2, '待完成任务2','待完成任务2', 1, '2015-4-30', '1', 0, 1, 2, 1);";
+    final String INSERT_TASK_3="INSERT INTO \"task\" VALUES (3, '待完成任务3','待完成任务3', 1, '2015-4-30', '0', 0, 1, 3, 1);";
+    final String INSERT_TASK_4="INSERT INTO \"task\" VALUES (4, '我的任务','这是一条分配给我的任务', 1, '2015-4-30', '1', 0, 1, 1, 1);";
 
     final String INSERT_PROJECT_PARTICIPANT_1="INSERT INTO \"project_participant\" VALUES (1, 1);";
     final String INSERT_PROJECT_PARTICIPANT_2="INSERT INTO \"project_participant\" VALUES (1, 2);";
