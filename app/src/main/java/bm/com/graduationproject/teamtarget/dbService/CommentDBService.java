@@ -1,5 +1,6 @@
 package bm.com.graduationproject.teamtarget.dbService;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -43,7 +44,25 @@ public class CommentDBService {
         Cursor cursor=database.rawQuery("select count(*) from comment where task_id=?",
                 new String[]{String.valueOf(taskId)});
         cursor.moveToFirst();
-        return  new Long(cursor.getLong(0)).intValue();
+        int counts=new Long(cursor.getLong(0)).intValue();
+
+        dbManager.closeDB(database);
+        return  counts;
+
+    }
+    public int insertComment(Comment comment){
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        ContentValues cv=new ContentValues();
+        cv.put("user_id",comment.getUserId());
+        cv.put("task_id",comment.getTaskId());
+        cv.put("content",comment.getContent());
+        cv.put("date",comment.getDate());
+
+     int results=new Long(database.insert("comment",null,cv)).intValue();
+
+        dbManager.closeDB(database);
+        return results;
 
     }
 }

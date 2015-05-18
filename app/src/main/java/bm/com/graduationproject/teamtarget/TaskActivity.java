@@ -3,20 +3,25 @@ package bm.com.graduationproject.teamtarget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -39,6 +44,7 @@ import bm.com.graduationproject.teamtarget.dbService.UserDBService;
 import bm.com.graduationproject.teamtarget.model.Comment;
 import bm.com.graduationproject.teamtarget.model.Task;
 import bm.com.graduationproject.teamtarget.model.User;
+import bm.com.graduationproject.teamtarget.utils.AppContext;
 import bm.com.graduationproject.teamtarget.utils.Tag;
 
 
@@ -230,7 +236,37 @@ public class TaskActivity extends Activity {
 
         }
 
+        //set edit text
+        EditText newComment=(EditText)findViewById(R.id.task_comment);
+        newComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
 
+                if(actionId== EditorInfo.IME_ACTION_DONE){
+
+                    Comment comment=new Comment();
+                    comment.setUserId(AppContext.getInstance().getUserId());
+                    comment.setTaskId(taskId);
+                    comment.setContent(textView.getText().toString());
+
+                    Calendar cal = Calendar.getInstance();
+                    int month=cal.get(Calendar.MONTH)+1;
+
+                    comment.setDate(""+cal.get(Calendar.YEAR)+"-"+month+"-"+cal.get(Calendar.DAY_OF_MONTH));
+
+                    CommentDBService commentDBService_1=new CommentDBService(DBManager.getInstance(TaskActivity.this));
+                    commentDBService_1.insertComment(comment);
+
+                    closeInputMethod(textView);
+                    textView.setText("");
+                    refresh();
+
+                }
+
+
+                return true;
+            }
+        });
 
 
 
@@ -426,6 +462,19 @@ public class TaskActivity extends Activity {
         builder.setView(tagDialogLinearLayout);
         tagDialog=builder.create();
         tagDialog.show();
+    }
+
+    private void closeInputMethod(TextView textView){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        boolean isOpen = imm.isActive();
+        if (isOpen) {
+
+            imm.hideSoftInputFromWindow(textView.getWindowToken(),0);
+        }
+    }
+
+    private void refresh(){
+        onCreate(null);
     }
     private List<Tag> getPreparedTags(){
         List<Tag> tags=new ArrayList<Tag>(3);
