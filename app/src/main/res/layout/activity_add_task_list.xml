@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="bm.com.graduationproject.teamtarget.AddTaskListActivity">
+
+    <EditText
+        android:id="@+id/add_task_list_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_task_list_name"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_task_list_edit"
+        android:layout_alignLeft="@id/add_task_list_edit"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/add_task_list_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/project_name"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+
+            />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/add_task_list_project_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/add_task_list_project"
+            android:textSize="20sp"/>
+
+        </RelativeLayout>
+
+</RelativeLayout>

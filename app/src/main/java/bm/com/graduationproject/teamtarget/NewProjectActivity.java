@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -24,6 +25,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import bm.com.graduationproject.teamtarget.adapter.SingleChoiceListAdapter;
+import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
+import bm.com.graduationproject.teamtarget.dbService.ProjectDBService;
+import bm.com.graduationproject.teamtarget.model.Project;
+import bm.com.graduationproject.teamtarget.utils.AppContext;
 
 
 public class NewProjectActivity extends Activity {
@@ -31,7 +36,7 @@ public class NewProjectActivity extends Activity {
     private ArrayList<HashMap<String,Object>> newItemList;
     private SimpleAdapter newItemListAdapter;
 
-
+    private Project newProject;
 
     private Dialog choiceDialog;
     //costume adapter for single choice dialog
@@ -44,6 +49,8 @@ public class NewProjectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_project);
+
+        newProject=new Project();
         getActionBar().setIcon(
                 new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
@@ -81,6 +88,18 @@ public class NewProjectActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
 
+        }
+
+        if(id==R.id.new_project_tick){
+
+
+            ProjectDBService projectDBService=new ProjectDBService(DBManager.getInstance(this));
+            setNewProject();
+            projectDBService.addProject(newProject);
+
+            Intent intent=new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -303,6 +322,26 @@ public class NewProjectActivity extends Activity {
            choiceDialog.dismiss();
 
         }
+    }
+
+    private void setNewProject(){
+        EditText editText=(EditText)findViewById(R.id.edit_new_project);
+        newProject.setName(editText.getText().toString());
+
+        //fixed data because only support for personal project
+        newProject.setOwnership("个人项目");
+
+        if(viewChange.getText().toString()!=null){
+            newProject.setPublicity(viewChange.getText().toString());
+        }else{
+            newProject.setPublicity("私有项目");
+        }
+
+
+        AppContext appContext=AppContext.getInstance();
+        newProject.setCreator(appContext.getUserId());
+
+        newProject.setFinishStatus(0);
     }
 
 }

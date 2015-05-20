@@ -1,5 +1,6 @@
 package bm.com.graduationproject.teamtarget.dbService;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -38,5 +39,20 @@ public class TaskListDBService {
         }
         dbManager.closeDB(database);
         return taskLists;
+    }
+    public int addTaskList(TaskList taskList){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        ContentValues cv=new ContentValues();
+
+        cv.put("task_name",taskList.getName());
+        cv.put("project_id",taskList.getProjectId());
+
+        int results=new Long(database.insert("task_list",null,cv)).intValue();
+
+        dbManager.closeDB(database);
+        return results;
+
     }
 }

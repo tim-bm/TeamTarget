@@ -9,7 +9,11 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +29,17 @@ public class TaskListActivity extends FragmentActivity {
 
     private ActionBar actionBar;
     private ViewPager viewPager;
+
+    private int projectId;
+    private String projectName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
         Intent intent=getIntent();
-        int projectId=intent.getIntExtra("projectId",-1);
-        String projectName=intent.getStringExtra("projectName");
+        projectId=intent.getIntExtra("projectId",-1);
+        projectName=intent.getStringExtra("projectName");
 
         //set title
         actionBar=getActionBar();
@@ -111,7 +118,73 @@ public class TaskListActivity extends FragmentActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id==R.id.task_list_new){
+
+            displayPopupWindow(id);
+        }
+
+
 
         return super.onOptionsItemSelected(item);
+    }
+    private void displayPopupWindow(int id){
+        View menuItemView =findViewById(id);
+
+        PopupMenu popupMenu=new PopupMenu(this,menuItemView);
+
+        popupMenu.setOnMenuItemClickListener(new TaskListMenuItemListener());
+        popupMenu.getMenuInflater().inflate(R.menu.task_list_actions,popupMenu.getMenu());
+
+
+        // use reflect to show popupMenu item
+
+        try {
+            Field[] fields = popupMenu.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if ("mPopup".equals(field.getName())) {
+                    field.setAccessible(true);
+                    Object menuPopupHelper = field.get(popupMenu);
+                    Class<?> classPopupHelper = Class.forName(menuPopupHelper
+                            .getClass().getName());
+                    Method setForceIcons = classPopupHelper.getMethod(
+                            "setForceShowIcon", boolean.class);
+                    setForceIcons.invoke(menuPopupHelper, true);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        popupMenu.show();
+
+
+    }
+
+    class TaskListMenuItemListener implements PopupMenu.OnMenuItemClickListener{
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+
+            switch (item.getItemId()){
+
+                case R.id.task_list_new_task_list:
+
+                    //start add task list activity
+                    Intent intent=new Intent(TaskListActivity.this,AddTaskListActivity.class);
+                    intent.putExtra("projectId",projectId);
+                    intent.putExtra("projectName",projectName);
+
+                    startActivity(intent);
+
+                    return true;
+
+
+                default:
+                return false;
+            }
+
+
+        }
     }
 }

@@ -43,6 +43,10 @@
     <string name="working_on">进行中</string>
     <string name="out_of_date">已过期</string>
     <string name="finished">已完成</string>
+    <string name="new_task_list">新建任务列表</string>
+    <string name="title_activity_add_task_list">AddTaskListActivity</string>
+    <string name="input_task_list_name">输入任务列表名称</string>
+
 
 
 

@@ -3,4 +3,12 @@
     tools:context="bm.com.graduationproject.teamtarget.TaskListActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
+
+
+    <!--new -->
+    <item android:id="@+id/task_list_new"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/action_new"
+        android:showAsAction="ifRoom"/>
+
 </menu>

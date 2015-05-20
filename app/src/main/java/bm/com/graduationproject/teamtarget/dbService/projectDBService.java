@@ -1,5 +1,6 @@
 package bm.com.graduationproject.teamtarget.dbService;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -57,6 +58,22 @@ public class ProjectDBService {
 
         dbManager.closeDB(database);
         return p;
+    }
+
+    public int addProject(Project project){
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        ContentValues cv=new ContentValues();
+        cv.put("project_name",project.getName());
+        cv.put("ownership",project.getOwnership());
+        cv.put("publicity",project.getPublicity());
+        cv.put("creator",project.getCreator());
+        cv.put("finish_status",project.getFinishStatus());
+
+        int results=new Long(database.insert("project",null,cv)).intValue();
+
+        dbManager.closeDB(database);
+        return results;
     }
 
 
