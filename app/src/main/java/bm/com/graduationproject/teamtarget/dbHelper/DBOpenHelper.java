@@ -77,6 +77,15 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             "CONSTRAINT \"fk_user\" FOREIGN KEY (\"user_id\") REFERENCES \"user\" (\"user_id\") ON DELETE CASCADE ON UPDATE CASCADE,"+
             "CONSTRAINT \"fk_task\" FOREIGN KEY (\"task_id\") REFERENCES \"task\" (\"task_id\") ON DELETE CASCADE ON UPDATE CASCADE"+
             ");";
+
+
+    final String CREATE_TABLE_DIARY="CREATE TABLE \"diary\"("+
+            "\"diary_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "\"user_id\" INTEGER NOT NULL,"+
+            "\"action\" INTEGER NOT NULL,"+
+            "\"task_id\" INTEGER NOT NULL,"+
+            "\"date\"  TEXT," +
+            ");";
     //initial data
     final String INSERT_USER_1="INSERT INTO \"user\" VALUES (1, 'aaa', 'aaa@qq.com');";
     final String INSERT_USER_2="INSERT INTO \"user\" VALUES (2, 'bbb', 'bbb@qq.com');";
@@ -104,6 +113,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_COMMENT_2="INSERT INTO \"comment\" VALUES(2,1,1,'这是评论2','2015-5-12');";
     final String INSERT_COMMENT_3="INSERT INTO \"comment\" VALUES(3,1,1,'这是评论3','2015-5-12');";
 
+
+    final String INSERT_DIARY_1="";
+    final String INSERT_DIARY_2="";
 
 
 

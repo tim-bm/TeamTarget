@@ -179,6 +179,12 @@ public class TaskListActivity extends FragmentActivity {
 
                     return true;
 
+                case R.id.task_list_new_task:
+
+                    Intent intent1=new Intent(TaskListActivity.this,AddTaskActivity.class);
+                    startActivity(intent1);
+                    return true;
+
 
                 default:
                 return false;

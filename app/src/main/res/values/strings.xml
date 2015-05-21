@@ -46,6 +46,10 @@
     <string name="new_task_list">新建任务列表</string>
     <string name="title_activity_add_task_list">AddTaskListActivity</string>
     <string name="input_task_list_name">输入任务列表名称</string>
+    <string name="title_activity_add_task">AddTaskActivity</string>
+    <string name="project">项目</string>
+    <string name="task_list">任务列表</string>
+    <string name="chose_project">选择项目</string>
 
 
 

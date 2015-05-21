@@ -39,7 +39,6 @@
         android:layout_below="@id/task_title_in_list"
         android:drawableLeft="@drawable/icon_comment"
         android:drawablePadding="5dp"
-        android:text="1"
         android:textColor="@android:color/darker_gray"
         android:textSize="13sp"
         android:layout_marginLeft="15dp"

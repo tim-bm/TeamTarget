@@ -10,6 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import bm.com.graduationproject.teamtarget.R;
+import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
+import bm.com.graduationproject.teamtarget.dbService.CommentDBService;
 import bm.com.graduationproject.teamtarget.model.Task;
 
 /**
@@ -78,6 +80,12 @@ public class TaskListAdapter extends BaseAdapter {
         //set information of the view
         holder.title.setText(tasks.get(position).getName());
         holder.id.setText(String.valueOf(tasks.get(position).getId()));
+
+        //get numbers of comment inside adapter
+        CommentDBService commentDBService=new CommentDBService(DBManager.getInstance(convertView.getContext()));
+        int counts=commentDBService.getCommentCountByTaskId(tasks.get(position).getId());
+
+        holder.comment.setText(String.valueOf(counts));
 
         return convertView;
 

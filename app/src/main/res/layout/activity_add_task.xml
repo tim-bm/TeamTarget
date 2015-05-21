@@ -1,0 +1,209 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="bm.com.graduationproject.teamtarget.AddTaskActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/add_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"/>
+
+        <!-- project-->
+        <RelativeLayout
+            android:id="@+id/project_click_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/add_task_project_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_project_add_task"
+                />
+
+            <TextView
+                android:id="@+id/add_task_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/add_task_project_image"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:text="@string/project"/>
+
+
+            <TextView
+                android:id="@+id/add_task_project_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                />
+
+
+
+            </RelativeLayout>
+
+        <!--separating line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+        <!-- task list-->
+        <RelativeLayout
+            android:id="@+id/list_click_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/add_task_list_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_list_add_task"
+                />
+
+            <TextView
+                android:id="@+id/add_task_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/add_task_list_image"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:text="@string/task_list"/>
+
+
+            <TextView
+                android:id="@+id/add_task_list_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+              />
+
+        </RelativeLayout>
+
+        <!--separating line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+
+        <!-- distribute -->
+        <RelativeLayout
+            android:id="@+id/distribute_click_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/add_task_distribute_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_distribute_add_task"
+
+                />
+
+            <TextView
+                android:id="@+id/add_task_distribute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/add_task_distribute_image"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:text="@string/distribute"/>
+
+
+            <TextView
+                android:id="@+id/add_task_distribute_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                />
+
+        </RelativeLayout>
+
+        <!--separating line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+
+
+        <!-- deadline -->
+        <RelativeLayout
+            android:id="@+id/deadline_click_add_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/add_task_deadline_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_deadline_add_task"
+
+                />
+
+            <TextView
+                android:id="@+id/add_task_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/add_task_deadline_image"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:text="@string/deadline"/>
+
+
+            <TextView
+                android:id="@+id/add_task_deadline_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                />
+
+        </RelativeLayout>
+
+        <!--separating line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+        
+
+    </LinearLayout>
+
+</RelativeLayout>

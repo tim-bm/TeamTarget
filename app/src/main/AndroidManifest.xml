@@ -62,8 +62,17 @@
         <activity
             android:name=".AddTaskListActivity"
             android:label="@string/title_activity_add_task_list"
-            android:theme="@style/TeamTargetCustomActionBarTheme"
-            android:parentActivityName=".TaskListActivity" >
+            android:parentActivityName=".TaskListActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bm.com.graduationproject.teamtarget.TaskListActivity" />
+        </activity>
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            android:parentActivityName=".TaskListActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bm.com.graduationproject.teamtarget.TaskListActivity" />
