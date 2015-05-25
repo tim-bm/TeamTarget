@@ -25,19 +25,21 @@
         android:layout_marginTop="5dp"/>
 
 
+    <Button
+    android:id="@+id/getMessage"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:text="获取推送消息">
 
-    <!--List of the common project list -->
-    <ListView
-        android:id="@+id/my_message"
-        android:layout_width="match_parent"
+</Button>
+
+    <Button
+        android:id="@+id/pushMessage"
         android:layout_height="wrap_content"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="2px"
-        android:headerDividersEnabled="true"
-        android:footerDividersEnabled="false"
-        android:layout_marginLeft="@dimen/fragment_list_margin_left">
+        android:layout_width="wrap_content"
+        android:text="推送消息到服务器">
 
-    </ListView>
+    </Button>
 
 
 

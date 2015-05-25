@@ -60,6 +60,16 @@ public class WorktableFragment extends Fragment {
             }
         });
 
+        //my schedule button
+        RelativeLayout mySchedule=(RelativeLayout)rootView.findViewById(R.id.worktable_my_schedule);
+        mySchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(rootView.getContext(),MyScheduleActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
 
 

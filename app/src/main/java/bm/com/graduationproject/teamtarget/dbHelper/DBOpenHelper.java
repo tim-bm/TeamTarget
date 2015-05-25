@@ -79,13 +79,25 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             ");";
 
 
-    final String CREATE_TABLE_DIARY="CREATE TABLE \"diary\"("+
+    final String CREATE_TABLE_SCHEDULE="CREATE TABLE \"schedule\"("+
+            "\"schedule_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "\"date\"  TEXT," +
+            "\"name\"  TEXT," +
+            "\"content\"  TEXT" +
+            ");";
+
+    //diary
+   /* final String CREATE_TABLE_DIARY="CREATE TABLE \"diary\"("+
             "\"diary_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
             "\"user_id\" INTEGER NOT NULL,"+
             "\"action\" INTEGER NOT NULL,"+
             "\"task_id\" INTEGER NOT NULL,"+
             "\"date\"  TEXT," +
             ");";
+*/
+
+
+
     //initial data
     final String INSERT_USER_1="INSERT INTO \"user\" VALUES (1, 'aaa', 'aaa@qq.com');";
     final String INSERT_USER_2="INSERT INTO \"user\" VALUES (2, 'bbb', 'bbb@qq.com');";
@@ -117,6 +129,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_DIARY_1="";
     final String INSERT_DIARY_2="";
 
+    final String INSERT_SCHEDULE_1="INSERT INTO \"schedule\" VALUES(1,'2015-6-1','这是日程名称1','这是日程内容1');";
+    final String INSERT_SCHEDULE_2="INSERT INTO \"schedule\" VALUES(2,'2015-6-4','这是日程名称2','这是日程内容3');";
 
 
     private DBOpenHelper(Context context) {
@@ -149,6 +163,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TABLE_USER);
         sqLiteDatabase.execSQL(CREATE_TABLE_PROJECT_PARTICIPANT);
         sqLiteDatabase.execSQL(CREATE_TABLE_COMMENT);
+        sqLiteDatabase.execSQL(CREATE_TABLE_SCHEDULE);
 
 
         //initial data
@@ -176,6 +191,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(INSERT_COMMENT_1);
         sqLiteDatabase.execSQL(INSERT_COMMENT_2);
         sqLiteDatabase.execSQL(INSERT_COMMENT_3);
+
+
+        sqLiteDatabase.execSQL(INSERT_SCHEDULE_1);
+        sqLiteDatabase.execSQL(INSERT_SCHEDULE_2);
 
 
     }

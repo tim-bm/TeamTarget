@@ -40,6 +40,19 @@ public class TaskListDBService {
         dbManager.closeDB(database);
         return taskLists;
     }
+
+    public int getIdByName(String name){
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        Cursor cursor=database.rawQuery("select * from task_list where task_name=?",new String[]{name});
+
+        int id=-1;
+        while(cursor.moveToNext()){
+            id=cursor.getInt(0);
+        }
+        return id;
+    }
+
     public int addTaskList(TaskList taskList){
 
         SQLiteDatabase database;

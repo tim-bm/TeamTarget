@@ -86,6 +86,31 @@ public class TaskDBService {
         return tasks;
     }
 
+    public List<Task> getTasksByProjectId(int projectId){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+
+        List<Task> tasks=new ArrayList<Task>();
+
+        Cursor cursor=database.rawQuery("select * from task where project_id=?"
+                ,new String[]{String.valueOf(projectId)});
+
+        Task t;
+        while (cursor.moveToNext()){
+
+            t=new Task(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),
+                    cursor.getString(5),cursor.getInt(6),cursor.getInt(7),cursor.getInt(8),cursor.getInt(9));
+
+            tasks.add(t);
+        }
+
+        dbManager.closeDB(database);
+        return tasks;
+
+
+    }
+
     public int updateTask(Task task){
 
         SQLiteDatabase database;
@@ -106,5 +131,26 @@ public class TaskDBService {
         dbManager.closeDB(database);
         return result;
 
+    }
+
+    public int insertTask(Task task){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+
+        ContentValues contentValues=new ContentValues();
+        contentValues.put("task_name",task.getName());
+        contentValues.put("description",task.getDescription());
+        contentValues.put("creator",task.getCreator());
+        contentValues.put("deadline",task.getDeadline());
+        contentValues.put("comment",task.getComment());
+        contentValues.put("tag",task.getTag());
+        contentValues.put("distribute_to",task.getDistributeTo());
+        contentValues.put("task_list_id",task.getTaskListId());
+        contentValues.put("project_id",task.getProjectId());
+
+        int result= new Long(database.insert("task",null,contentValues)).intValue();
+        dbManager.closeDB(database);
+        return result;
     }
 }

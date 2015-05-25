@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="bm.com.graduationproject.teamtarget" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".utils.AppContext"
         android:allowBackup="true"
@@ -72,11 +73,33 @@
             android:name=".AddTaskActivity"
             android:label="@string/title_activity_add_task"
             android:parentActivityName=".TaskListActivity"
-            android:theme="@style/TeamTargetCustomActionBarTheme">
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="bm.com.graduationproject.teamtarget.TaskListActivity" />
         </activity>
+        <activity
+            android:name=".MyScheduleActivity"
+            android:label="@string/title_activity_my_schedule"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/TeamTargetCustomActionBarTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bm.com.graduationproject.teamtarget.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddScheduleActivity"
+            android:label="@string/title_activity_add_schedule"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bm.com.graduationproject.teamtarget.MainActivity" />
+        </activity>
+        <service android:name=".service.WebService">
+            <intent-filter>
+                <action android:name="com.bm.webservice"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

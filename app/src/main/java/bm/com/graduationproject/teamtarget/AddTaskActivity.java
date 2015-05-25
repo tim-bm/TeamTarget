@@ -3,11 +3,14 @@ package bm.com.graduationproject.teamtarget;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
@@ -15,16 +18,26 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import bm.com.graduationproject.teamtarget.adapter.ProjectListAdapter;
 import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
 import bm.com.graduationproject.teamtarget.dbService.ProjectDBService;
+import bm.com.graduationproject.teamtarget.dbService.TaskDBService;
+import bm.com.graduationproject.teamtarget.dbService.TaskListDBService;
 import bm.com.graduationproject.teamtarget.model.Project;
+import bm.com.graduationproject.teamtarget.model.Task;
+import bm.com.graduationproject.teamtarget.model.TaskList;
+import bm.com.graduationproject.teamtarget.utils.AppContext;
 
 
 public class AddTaskActivity extends Activity {
+
+
+    //task name
+    private TextView taskNameTextView;
 
 
     //project
@@ -35,6 +48,10 @@ public class AddTaskActivity extends Activity {
     private ProjectListAdapter projectListAdapter;
     private List<Project> projects;
 
+    //task list
+    private  int taskListId=-1;
+    private Dialog taskListDialog;
+    private TextView taskListTextView;
 
     //deadline
     private View dateView;
@@ -50,6 +67,10 @@ public class AddTaskActivity extends Activity {
 
         setTitle("新建任务");
 
+        //taskNameTextView
+        taskNameTextView=(TextView)findViewById(R.id.add_task_name);
+
+
         //set project
         RelativeLayout projectClick=(RelativeLayout)findViewById(R.id.project_click_add_task);
         projectTextView=(TextView)findViewById(R.id.add_task_project_content);
@@ -63,7 +84,7 @@ public class AddTaskActivity extends Activity {
 
         if(projects.size()!=0){
             projectListAdapter.setSelected(0);
-            projectId=0;
+            projectId=1;
             projectTextView.setText(projects.get(0).getName());
         }
 
@@ -75,6 +96,20 @@ public class AddTaskActivity extends Activity {
                 showProjectDialog();
             }
         });
+
+
+        //set task List dialog
+
+        RelativeLayout taskListClick=(RelativeLayout)findViewById(R.id.list_click_add_task);
+        taskListTextView=(TextView)findViewById(R.id.add_task_list_content);
+
+        taskListClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTaskListDialog();
+            }
+        });
+
 
 
         //set deadline click listener
@@ -107,7 +142,7 @@ public class AddTaskActivity extends Activity {
                 projectListAdapter.notifyDataSetChanged();
 
                 projectTextView.setText(projects.get(i).getName());
-                projectId=i;
+                projectId=i+1;
 
                 projectDialog.dismiss();
             }
@@ -148,6 +183,29 @@ public class AddTaskActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if(id==R.id.add_task_tick){
+
+            AppContext appContext=AppContext.getInstance();
+
+
+            Task task=new Task();
+            task.setName(taskNameTextView.getText().toString());
+            task.setDescription("");
+            task.setCreator(appContext.getUserId());
+            task.setDeadline(deadlineText.getText().toString());
+            task.setComment("0");
+            task.setDistributeTo(appContext.getUserId());
+            task.setTaskListId(taskListId);
+            task.setProjectId(projectId);
+
+            TaskDBService taskDBService=new TaskDBService(DBManager.getInstance(this));
+            taskDBService.insertTask(task);
+
+            Intent intent =new Intent(this,MainActivity.class);
+            startActivity(intent);
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -230,6 +288,38 @@ public class AddTaskActivity extends Activity {
             current.setText(chosenDate);
 
         }
+    }
+
+    private void  showTaskListDialog(){
+        final AlertDialog.Builder builder=new AlertDialog.Builder(AddTaskActivity.this);
+        builder.setTitle("选择任务列表");
+
+        //get task list
+        TaskListDBService taskListDBService=new TaskListDBService(DBManager.getInstance(AddTaskActivity.this));
+
+        List<TaskList> taskLists=taskListDBService.getTaskListByProjectId(1);
+
+
+        final List<String> data=new ArrayList<String>();
+        for(int i=0;i<taskLists.size();i++){
+            data.add(taskLists.get(i).getName());
+        }
+
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,data);
+
+        builder.setSingleChoiceItems(adapter,0,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                TaskListDBService taskListDBService=new TaskListDBService(DBManager.getInstance(AddTaskActivity.this));
+                taskListId=taskListDBService.getIdByName(data.get(i));
+                taskListTextView.setText(data.get(i));
+                taskListDialog.dismiss();
+            }
+        });
+
+        taskListDialog=builder.create();
+        taskListDialog.show();
     }
 
 }

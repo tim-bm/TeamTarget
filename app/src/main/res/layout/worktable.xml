@@ -67,6 +67,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/worktable_my_schedule"
             android:layout_width="@dimen/worktable_radius"
             android:layout_height="@dimen/worktable_radius"
             android:gravity="center_vertical"
