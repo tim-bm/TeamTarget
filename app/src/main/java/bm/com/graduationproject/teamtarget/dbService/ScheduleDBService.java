@@ -1,5 +1,6 @@
 package bm.com.graduationproject.teamtarget.dbService;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -18,6 +19,23 @@ public class ScheduleDBService {
 
     public ScheduleDBService (DBManager dbManager){
         this.dbManager=dbManager;
+
+    }
+
+
+    public int insertSchedule(Schedule schedule){
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+        ContentValues cv=new ContentValues();
+        cv.put("date",schedule.getDate());
+        cv.put("name",schedule.getName());
+        cv.put("content",schedule.getContent());
+
+        int results=new Long(database.insert("schedule",null,cv)).intValue();
+        dbManager.closeDB(database);
+        return results;
+
 
     }
 

@@ -1,6 +1,7 @@
 package bm.com.graduationproject.teamtarget.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,11 @@ public class TaskListAdapter extends BaseAdapter {
 
 
         //set information of the view
+
         holder.title.setText(tasks.get(position).getName());
+        if(tasks.get(position).getComment().equals("1")){
+            holder.title.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
         holder.id.setText(String.valueOf(tasks.get(position).getId()));
 
         //get numbers of comment inside adapter

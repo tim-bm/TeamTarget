@@ -19,7 +19,7 @@
     <string name="recent_new">最新动态</string>
     <string name="my_task">我的任务</string>
     <string name="my_schedule">我的日程</string>
-    <string name="today_task">今天任务</string>
+    <string name="recent_task">最近任务</string>
     <string name="today_schedule">今天日程</string>
     <string name="my_message">我的消息</string>
     <string name="title_activity_new_project">NewProjectActivity</string>
@@ -52,6 +52,9 @@
     <string name="chose_project">选择项目</string>
     <string name="title_activity_my_schedule">MyScheduleActivity</string>
     <string name="title_activity_add_schedule">AddScheduleActivity</string>
+    <string name="title_activity_new_schedule">新建日程</string>
+    <string name="input_schedule_name">输入日程名称</string>
+    <string name="input_schedule_content">输入日程内容</string>
 
 
 

@@ -179,7 +179,8 @@ public class TaskActivity extends Activity {
 
                     titleTextView.setTextColor(Color.parseColor("#000000"));
                     titleTextView.getPaint().setFlags(0);
-
+                    task.setComment("0");
+                    taskDBService.updateTask(task);
                 }
                 titleTextView.invalidate();
             }
@@ -300,6 +301,10 @@ public class TaskActivity extends Activity {
             current.setText(""+cal.get(Calendar.YEAR)+"-"+month+"-"+
                     cal.get(Calendar.DAY_OF_MONTH));
 
+            //set default date
+            chosenDate=""+cal.get(Calendar.YEAR)+"-"+month+"-"+
+                    cal.get(Calendar.DAY_OF_MONTH);
+
             //buttons
 
             Button cancelButton=(Button)dialogView.findViewById(R.id.dialog_date_cancel);
@@ -361,10 +366,24 @@ public class TaskActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id==R.id.task_tick){
+
+            Intent intent_main=new Intent(this,MainActivity.class);
+            startActivity(intent_main);
+
+            return true;
+        }
         if(id==android.R.id.home){
 
 
             Intent infoIntent=getIntent();
+
+            if(infoIntent.getIntExtra("backToMain",-1)==1){
+                Intent intent_main=new Intent(this,MainActivity.class);
+                startActivity(intent_main);
+                return true;
+            }
+
             if(infoIntent.getIntExtra("fromMyTask",-1)==-1){
                 int projectId=infoIntent.getIntExtra("projectId",-1);
                 String projectName=infoIntent.getStringExtra("projectName");
@@ -379,6 +398,8 @@ public class TaskActivity extends Activity {
 
 
             }else{
+
+
                 Intent intent_my=new Intent(this,MyTaskActivity.class);
                 startActivity(intent_my);
             }

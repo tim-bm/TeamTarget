@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="bm.com.graduationproject.teamtarget.NewScheduleActivity">
+
+    <EditText
+        android:id="@+id/new_schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_schedule_name"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/new_schedule_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_schedule_content"
+        android:layout_below="@id/new_schedule_title"
+        android:layout_marginBottom="10dp"/>
+
+    <!--separating line -->
+    <ImageView
+        android:id="@+id/add_schedule_separate"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/new_schedule_content"
+
+        />
+
+
+    <!--deadline -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_schedule_deadline_click"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/add_schedule_separate"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deadline"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/new_schedule_text_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/darker_gray"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

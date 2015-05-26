@@ -172,6 +172,9 @@ public class MainActivity extends FragmentActivity {
                     return  true;
 
                 case R.id.new_schedule:
+
+                   Intent intent=new Intent(MainActivity.this,NewScheduleActivity.class);
+                    startActivity(intent);
                     return true;
 
                 default:

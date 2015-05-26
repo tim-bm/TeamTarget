@@ -297,7 +297,7 @@ public class AddTaskActivity extends Activity {
         //get task list
         TaskListDBService taskListDBService=new TaskListDBService(DBManager.getInstance(AddTaskActivity.this));
 
-        List<TaskList> taskLists=taskListDBService.getTaskListByProjectId(1);
+        List<TaskList> taskLists=taskListDBService.getTaskListByProjectId(projectId);
 
 
         final List<String> data=new ArrayList<String>();

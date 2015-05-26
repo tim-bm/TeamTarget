@@ -81,9 +81,9 @@ public class MyScheduleActivity extends Activity {
         });
 
         //test service
-        Intent intent=new Intent();
-        intent.setAction("com.bm.webservice");
-        startService(intent);
+//        Intent intent=new Intent();
+//        intent.setAction("com.bm.webservice");
+//        startService(intent);
 
 
 

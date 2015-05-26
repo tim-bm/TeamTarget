@@ -111,6 +111,23 @@ public class TaskDBService {
 
     }
 
+    public List<Task> getLatestTwoTask(){
+
+        List<Task> tasks=new ArrayList<Task>(2);
+
+        SQLiteDatabase database;
+        database=dbManager.openDB();
+
+        Cursor cursor=database.rawQuery("select * from task order by task_id desc limit 2 offset 1",null);
+        Task t;
+        while (cursor.moveToNext()){
+            t=new Task(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),
+                    cursor.getString(4),cursor.getString(5),cursor.getInt(6),cursor.getInt(7),cursor.getInt(8),cursor.getInt(9));
+            tasks.add(t);
+        }
+        return tasks;
+    }
+
     public int updateTask(Task task){
 
         SQLiteDatabase database;
