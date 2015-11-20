@@ -86,6 +86,13 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             "\"content\"  TEXT" +
             ");";
 
+    final String CREATE_TABLE_DIARY="CREATE TABLE \"diary\"("+
+            "\"diary_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "\"date\"  TEXT," +
+            "\"task_id\"  INTEGER," +
+            "\"content\"  TEXT" +
+            ");";
+
     //diary
    /* final String CREATE_TABLE_DIARY="CREATE TABLE \"diary\"("+
             "\"diary_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
@@ -125,12 +132,12 @@ public class DBOpenHelper extends SQLiteOpenHelper {
     final String INSERT_COMMENT_2="INSERT INTO \"comment\" VALUES(2,1,1,'这是评论2','2015-5-12');";
     final String INSERT_COMMENT_3="INSERT INTO \"comment\" VALUES(3,1,1,'这是评论3','2015-5-12');";
 
-
-    final String INSERT_DIARY_1="";
-    final String INSERT_DIARY_2="";
-
     final String INSERT_SCHEDULE_1="INSERT INTO \"schedule\" VALUES(1,'2015-6-1','这是日程名称1','这是日程内容1');";
     final String INSERT_SCHEDULE_2="INSERT INTO \"schedule\" VALUES(2,'2015-6-4','这是日程名称2','这是日程内容3');";
+
+    final String INSERT_DIARY_1="INSERT INTO \"diary\" VALUES(1,'2015-6-26',1,'aaa完成了任务')";
+    final String INSERT_DIARY_2="INSERT INTO \"diary\" VALUES(2,'2015-6-26',1,'aaa添加了评论')";
+
 
 
     private DBOpenHelper(Context context) {
@@ -164,6 +171,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_TABLE_PROJECT_PARTICIPANT);
         sqLiteDatabase.execSQL(CREATE_TABLE_COMMENT);
         sqLiteDatabase.execSQL(CREATE_TABLE_SCHEDULE);
+        sqLiteDatabase.execSQL(CREATE_TABLE_DIARY);
 
 
         //initial data
@@ -195,6 +203,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(INSERT_SCHEDULE_1);
         sqLiteDatabase.execSQL(INSERT_SCHEDULE_2);
+
+        sqLiteDatabase.execSQL(INSERT_DIARY_1);
+        sqLiteDatabase.execSQL(INSERT_DIARY_2);
 
 
     }

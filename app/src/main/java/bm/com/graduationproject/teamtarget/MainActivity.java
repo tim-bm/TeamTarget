@@ -56,21 +56,16 @@ public class MainActivity extends FragmentActivity {
         mainFragmentList.add(new ProjectFragment());
         mainFragmentList.add(new MessageFragment());
 
-        viewPager=(ViewPager)findViewById(R.id.main_view_page);
+            viewPager=(ViewPager)findViewById(R.id.main_view_page);
+            viewPager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(),mainFragmentList));
+            viewPager.setOnPageChangeListener(new TabChangeListener(this));
+            viewPager.setCurrentItem(0);
 
-        viewPager.setAdapter(new MainFragmentPageAdapter(getSupportFragmentManager(),mainFragmentList));
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        viewPager.setOnPageChangeListener(new TabChangeListener(this));
-
-        viewPager.setCurrentItem(0);
-
-      //  tabTitles =new String[] {"工作台","项目","消息"};
-
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        tab1=actionBar.newTab().setText(R.string.tab1).setContentDescription("tab1")
-                .setTabListener(new TabSwipeListener(viewPager));
-        actionBar.addTab(tab1);
+            tab1=actionBar.newTab().setText(R.string.tab1).setContentDescription("tab1")
+                    .setTabListener(new TabSwipeListener(viewPager));
+            actionBar.addTab(tab1);
 
         tab2=actionBar.newTab().setText(R.string.tab2).setContentDescription("tab2")
                 .setTabListener(new TabSwipeListener(viewPager));

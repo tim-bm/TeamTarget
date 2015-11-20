@@ -102,7 +102,7 @@ public class WebService extends Service {
                     String res=new String(resp).trim();
 
                     String message=new String(res.getBytes("UTF-8"),"UTF-8");
-                    System.out.println("中文:"+res);
+
 
                     Log.i(TAG, res);
 
@@ -158,4 +158,6 @@ public class WebService extends Service {
         String[] content=str.split("&");
 
     }
+
+
 }

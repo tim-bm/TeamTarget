@@ -83,7 +83,10 @@ public class TaskListAdapter extends BaseAdapter {
         holder.title.setText(tasks.get(position).getName());
         if(tasks.get(position).getComment().equals("1")){
             holder.title.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }else{
+            holder.title.getPaint().setFlags(0);
         }
+        holder.title.invalidate();
         holder.id.setText(String.valueOf(tasks.get(position).getId()));
 
         //get numbers of comment inside adapter

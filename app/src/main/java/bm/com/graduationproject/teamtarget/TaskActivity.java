@@ -39,12 +39,16 @@ import bm.com.graduationproject.teamtarget.adapter.CommentListAdapter;
 import bm.com.graduationproject.teamtarget.adapter.TagListAdapter;
 import bm.com.graduationproject.teamtarget.dbHelper.DBManager;
 import bm.com.graduationproject.teamtarget.dbService.CommentDBService;
+import bm.com.graduationproject.teamtarget.dbService.DiaryDBService;
 import bm.com.graduationproject.teamtarget.dbService.TaskDBService;
 import bm.com.graduationproject.teamtarget.dbService.UserDBService;
 import bm.com.graduationproject.teamtarget.model.Comment;
+import bm.com.graduationproject.teamtarget.model.Diary;
+import bm.com.graduationproject.teamtarget.model.Schedule;
 import bm.com.graduationproject.teamtarget.model.Task;
 import bm.com.graduationproject.teamtarget.model.User;
 import bm.com.graduationproject.teamtarget.utils.AppContext;
+import bm.com.graduationproject.teamtarget.utils.DiaryGenerator;
 import bm.com.graduationproject.teamtarget.utils.Tag;
 
 
@@ -174,6 +178,11 @@ public class TaskActivity extends Activity {
                     task.setComment("1");
                     taskDBService.updateTask(task);
 
+                    //set diary
+                    Diary d=new Diary(getCurrentTime(),taskId, DiaryGenerator.
+                            finishTask(AppContext.getInstance().getUserName(), task.getName()));
+                    DiaryDBService diaryDBService=new DiaryDBService(DBManager.getInstance(TaskActivity.this));
+                    diaryDBService.insertDiary(d);
 
                 }else {
 
@@ -257,6 +266,14 @@ public class TaskActivity extends Activity {
 
                     CommentDBService commentDBService_1=new CommentDBService(DBManager.getInstance(TaskActivity.this));
                     commentDBService_1.insertComment(comment);
+
+
+                    //set diary
+                    Diary d=new Diary(getCurrentTime(),taskId, DiaryGenerator.
+                            addComment(AppContext.getInstance().getUserName(), task.getName()));
+                    DiaryDBService diaryDBService=new DiaryDBService(DBManager.getInstance(TaskActivity.this));
+                    diaryDBService.insertDiary(d);
+
 
                     closeInputMethod(textView);
                     textView.setText("");
@@ -509,6 +526,12 @@ public class TaskActivity extends Activity {
         tags.add(t);
 
         return  tags;
+    }
+
+    private String getCurrentTime(){
+        Calendar cal = Calendar.getInstance();
+        int month=cal.get(Calendar.MONTH)+1;
+       return  ""+cal.get(Calendar.YEAR)+"-"+month+"-"+cal.get(Calendar.DAY_OF_MONTH);
     }
 
 }

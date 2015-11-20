@@ -55,6 +55,7 @@
     <string name="title_activity_new_schedule">新建日程</string>
     <string name="input_schedule_name">输入日程名称</string>
     <string name="input_schedule_content">输入日程内容</string>
+    <string name="title_activity_diary">DiaryActivity</string>
 
 
 

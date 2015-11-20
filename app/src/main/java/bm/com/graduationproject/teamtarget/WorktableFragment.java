@@ -90,6 +90,17 @@ public class WorktableFragment extends Fragment {
             }
         });
 
+
+        //diary button
+        RelativeLayout myDiary=(RelativeLayout)rootView.findViewById(R.id.recent_news);
+        myDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(rootView.getContext(),DiaryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
 
 
@@ -103,15 +114,20 @@ public class WorktableFragment extends Fragment {
         TaskDBService taskDBService=new TaskDBService(DBManager.getInstance(rootView.getContext()));
         List<Task> recentTasks=taskDBService.getLatestTwoTask();
 
-        for(int i=0;i<2;i++){
+        if(recentTasks.isEmpty()){
 
-            map = new HashMap<String, Object>();
-            map.put("title",recentTasks.get(i).getName());
-            map.put("time",recentTasks.get(i).getDeadline());
-            map.put("id",recentTasks.get(i).getId());
-            list.add(map);
+        }else {
+
+
+            for (int i = 0; i < 2; i++) {
+
+                map = new HashMap<String, Object>();
+                map.put("title", recentTasks.get(i).getName());
+                map.put("time", recentTasks.get(i).getDeadline());
+                map.put("id", recentTasks.get(i).getId());
+                list.add(map);
+            }
         }
-
         return list;
 
     }

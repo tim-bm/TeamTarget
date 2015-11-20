@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+
+    <item android:id="@+id/new_project"
+        android:title="@string/new_project"
+        android:titleCondensed="@string/new_project"
+        android:icon="@drawable/menu_item_project"
+        />
+    <item android:id="@+id/new_task"
+        android:title="@string/new_task"
+        android:titleCondensed="@string/new_task"
+        android:icon="@drawable/menu_item_task"/>
+    <item android:id="@+id/new_schedule"
+        android:title="@string/new_schedule"
+        android:titleCondensed="@string/new_schedule"
+        android:icon="@drawable/menu_item_schedule"/>
+
+</menu>
